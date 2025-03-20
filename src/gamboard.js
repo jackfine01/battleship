@@ -114,14 +114,14 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
         if(horizontal){
             if(positive){
                 for(let i = 0; i < this.board.length; i++){
-                    if(i.position[0]>=start[0] && i.position[0]<=end[0]){
+                    if((i.position[0]>=start[0] && i.position[0]<=end[0])&&i.position[1]==start[1]){
                         i.shipPlace();
                         i.setShip(type);
                     }
                 }
             } else {
                 for(let i = 0; i < this.board.length; i++){
-                    if(i.position[0]<=start[0] && i.position[0]>=end[0]){
+                    if(i.position[0]<=start[0] && i.position[0]>=end[0]&&i.position[1]==start[1]){
                         i.shipPlace();
                         i.setShip(type);
                     }
@@ -130,14 +130,14 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
         } else {
             if(positive){
                 for(let i = 0; i < this.board.length; i++){
-                    if(i.position[1]>=start[1] && i.position[1]<=end[1]){
+                    if((i.position[1]>=start[1] && i.position[1]<=end[1])&&i.position[0]==start[0]){
                         i.shipPlace();
                         i.setShip(type);
                     }
                 }
             } else {
                 for(let i = 0; i < this.board.length; i++){
-                    if(i.position[1]<=start[1] && i.position[1]>=end[1]){
+                    if((i.position[1]<=start[1] && i.position[1]>=end[1])&&i.position[0]==start[0]){
                         i.shipPlace();
                         i.setShip(type);
                     }
