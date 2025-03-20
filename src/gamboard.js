@@ -6,25 +6,25 @@ class boardNode {  // Information for each node on the board.
         this.position = position;
         this.ship = null;
     }
-    hit(){
+    hit(){ //assigns true to the node.
         this.hasHit = true;
     }
-    shipPlace(){
+    shipPlace(){ //assigns true to contains ship
         this.containsShip = true;
     }
-    setShip(type){
+    setShip(type){  //sets ship type for the node.
         this.ship = type; 
     }
 }                    
-class Gameboard {  // Constructs a 10x10 Gameboard.
+class Gameboard {  // Gameboard class object, contains ships, nodes, and implicit game end logic.
     constructor(){
         this.board = this.createBoard();
         this.hits = 0;
         this.misses = 0;
         this.ships = [];
-        this.graveyard = [];
+        this.gameOver = false;
     }
-    createBoard(){
+    createBoard(){ // creates a 10x10 gameboard
         let nodeList = [];
         let matrix = [
             [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0], 
@@ -44,7 +44,7 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
         }
         return nodeList;
     };
-    find(position){
+    find(position){  //finds a position's index in the gameboard array
         let index = 0;
         for(let i = 0; i < 100 ;i++){
         let current = this.board[index].position;
@@ -54,7 +54,7 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
         index++;
         };
     }; 
-    hit(position){
+    hit(position){ // hits a position on the gameboard.
         let index = 0;
         for(let i = 0; i < 100 ;i++){
             let current = this.board[index].position;
@@ -63,13 +63,16 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
                         this.board[index].hit();
                     if(this.board[index].containsShip)
                         this.hits++;
-                    if(this.board[index].containsShip)
+                    if(!this.board[index].containsShip)
                         this.misses++;
                 }
             index++;
         };
+        if(this.hits >= 17){
+            this.gameOver = true;
+        }
     };
-    hasHit(position){
+    hasHit(position){  // checks to see if a position has been hit before.
         let index = 0;
         for(let i = 0; i < 100 ;i++){
             let current = this.board[index].position;
@@ -79,7 +82,7 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
             index++;
         };
     }
-    placeShip(type, start, end){
+    placeShip(type, start, end){  // creates a ship and places it on the board given ship type, starting, and ending coordiantes.
         let horizontal = null;
         let vertical = null;
         let positive = null;
@@ -143,3 +146,4 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
         };       
     };
 };
+export { Gameboard }
