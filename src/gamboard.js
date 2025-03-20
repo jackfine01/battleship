@@ -80,19 +80,11 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
         };
     }
     placeShip(type, start, end){
-        const startIndex = this.find(start);
-        const endIndex = this.find(end)
-        //start node tells us possible values (x/y, cant go diagonal.)
-        //end node tells us the actual values to use (which of the possible directions was used)
-        //type tells us the length
-        //iterate over the array and set the positions that match the parameters to shipContains True, ship type to type.
-        //finally, make and push a new ship to the ships array using the type.
         let horizontal = null;
         let vertical = null;
         let positive = null;
-
         const ship = new Ship(type, start, end)
-
+        this.ships.push(ship);
         if(start[1]==end[1]){
             horizontal = true;
         } else if(start[0]==end[0]){
@@ -100,7 +92,6 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
         } else {
             throw new Error('Unable to find x/y direction error')
         }
-
         if(horizontal === true){
             if(start[0]>end[0]){
                 positive = false;
@@ -116,11 +107,9 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
         } else {
            throw new Error('Unable to find +/- direction error')
         }
-
         const length = ship.find(length);
         if(horizontal){
             if(positive){
-                //horizontal positive loop conditions:
                 for(let i = 0; i < this.board.length; i++){
                     if(i.position[0]>=start[0] && i.position[0]<=end[0]){
                         i.shipPlace();
@@ -128,7 +117,6 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
                     }
                 }
             } else {
-                //horizontal negative loop conditions:
                 for(let i = 0; i < this.board.length; i++){
                     if(i.position[0]<=start[0] && i.position[0]>=end[0]){
                         i.shipPlace();
@@ -138,7 +126,6 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
             }
         } else {
             if(positive){
-                //vertical postivie loop conditions:
                 for(let i = 0; i < this.board.length; i++){
                     if(i.position[1]>=start[1] && i.position[1]<=end[1]){
                         i.shipPlace();
@@ -146,7 +133,6 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
                     }
                 }
             } else {
-                //vertical negative loop conditions:
                 for(let i = 0; i < this.board.length; i++){
                     if(i.position[1]<=start[1] && i.position[1]>=end[1]){
                         i.shipPlace();
@@ -154,9 +140,6 @@ class Gameboard {  // Constructs a 10x10 Gameboard.
                     }
                 }
             }
-        };
-
-
-        
+        };       
     };
-}
+};
