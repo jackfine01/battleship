@@ -1,18 +1,17 @@
 class Ship{
     constructor(type, start, end){
-        this.length() = findLength(start, end);  // Total Length of the Ship.
-        this.damage() = 0; // Number of times the ship has been hit.
-        this.sunk()   = false;
+        this.length = findLength(start, end);  // Total Length of the Ship.
+        this.damage = 0; // Number of times the ship has been hit.
+        this.sunk   = false;
         this.type = type;
     }
     hit(){
         this.damage++
+        if(this.damage > this.length)
+            this.sink();
     };
-    isSunk(damage, length){
-        if(damage >= length)
+    sink(){
             this.sunk = true;
-        else
-            this.damage = false;
     };
     findLength(){
         if(this.type == 'ca')
