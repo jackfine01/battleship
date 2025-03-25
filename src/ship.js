@@ -7,7 +7,7 @@ class Ship{
     }
     hit(){
         this.damage++
-        if(this.damage > this.length)
+        if(this.damage >= this.length)
             this.sink();
     };
     sink(){
