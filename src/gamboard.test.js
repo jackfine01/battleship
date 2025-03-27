@@ -14,10 +14,22 @@ beforeEach(() => {
   myInstance.hit([0,2]);
   myInstance.hit([0,1]);
   myInstance.hit([0,0]);
+
   myInstance.hit([3,5]);
+  myInstance.hit([2,5]);
+  myInstance.hit([1,5]);
+  myInstance.hit([0,5]);
+
   myInstance.hit([2,3]);
+  myInstance.hit([3,3]);
+  myInstance.hit([4,3]);
+
   myInstance.hit([4,2]);
+  myInstance.hit([3,2]);
+  myInstance.hit([2,2]);
+
   myInstance.hit([5,4]);
+  myInstance.hit([5,5]);
 
   myInstance.hit([0,0]);
   myInstance.hit([0,0]);
@@ -65,5 +77,8 @@ test('Carriers can be accessed via ship array', ()=> {
   );
 });
 test('cannot hit the same square twice', ()=> {
-  expect(myInstance.hits).toEqual(9);
+  expect(myInstance.hits).toEqual(17);
+});
+test('gameover can be toggled via sinking all ships', ()=> {
+  expect(myInstance.gameOver).toEqual(true);
 });
