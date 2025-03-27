@@ -58,13 +58,21 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
         let index = 0;
         for(let i = 0; i < 100 ;i++){
             let current = this.board[index].position;
+            let currentShip = this.board[index].ship
                 if(current[0]==position[0]&&current[1]==position[1]){
-                    if(this.board[index].hasHit == false)
+                    if(this.board[index].hasHit == false){
                         this.board[index].hit();
-                    if(this.board[index].containsShip)
-                        this.hits++;
-                    if(!this.board[index].containsShip)
-                        this.misses++;
+                        if(this.board[index].containsShip){
+                            this.hits++;
+                            for(let j = 0; j < 4; j++){
+                                if(this.ships[j].type==currentShip){
+                                    this.ships[j].hit();
+                                }
+                            }
+                        }
+                        if(!this.board[index].containsShip)
+                            this.misses++;
+                    }
                 }
             index++;
         };
