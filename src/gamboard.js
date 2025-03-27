@@ -127,7 +127,7 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
                     let nodePlace = this.board[i];
                     if((nodePlace.position[0]>=start[0] && nodePlace.position[0]<=end[0])&&nodePlace.position[1]==start[1]){
                         if(nodePlace.containsShip === true){
-                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way: ${nodePlace.ship}`);
                         };
                         this.board[i].shipPlace();
                         this.board[i].setShip(type);
@@ -138,7 +138,7 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
                     let nodePlace = this.board[i];
                     if(nodePlace.position[0]<=start[0] && nodePlace.position[0]>=end[0]&&nodePlace.position[1]==start[1]){
                         if(nodePlace.containsShip === true){
-                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way: ${nodePlace.ship}`);
                         };
                         this.board[i].shipPlace();
                         this.board[i].setShip(type);
@@ -151,7 +151,7 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
                     let nodePlace = this.board[i];
                     if((nodePlace.position[1]>=start[1] && nodePlace.position[1]<=end[1])&&nodePlace.position[0]==start[0]){
                         if(nodePlace.containsShip === true){
-                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way: ${nodePlace.ship}`);
                         };
                         this.board[i].shipPlace();
                         this.board[i].setShip(type);
@@ -162,7 +162,7 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
                     let nodePlace = this.board[i];
                     if((nodePlace.position[1]<=start[1] && nodePlace.position[1]>=end[1])&&nodePlace.position[0]==start[0]){
                         if(nodePlace.containsShip === true){
-                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way: ${nodePlace.ship}`);
                         };
                         this.board[i].shipPlace();
                         this.board[i].setShip(type);

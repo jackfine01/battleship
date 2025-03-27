@@ -2,9 +2,14 @@ import { Player } from "./player";
 
 let myInstance;
 beforeEach(() => {
-  myInstance = new Player();
+  myInstance = new Player('computer');
+  myInstance.genShips();
 });
 
-test('player tpye is intially null', ()=> {
-    expect(myInstance.playerType).toEqual(null);
+test('player type is intially computer', ()=> {
+    expect(myInstance.playerType).toEqual('computer');
 })
+test('there are only five ships', ()=> {
+  expect(myInstance.Gameboard.ships.length).toEqual(5);
+})
+
