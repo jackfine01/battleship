@@ -10,11 +10,15 @@ beforeEach(() => {
   myInstance.placeShip('cr', [2,2],[4,2])
   myInstance.placeShip('dd', [5,4],[5,5])
   myInstance.hit([0,4]);
+  myInstance.hit([0,3]);
+  myInstance.hit([0,2]);
+  myInstance.hit([0,1]);
+  myInstance.hit([0,0]);
+
   myInstance.hit([3,5]);
   myInstance.hit([2,3]);
   myInstance.hit([4,2]);
   myInstance.hit([5,4]);
-  myInstance.hit([0,0]);
 });
 test('matrix is proper size', ()=> {
     expect(myInstance.board.length).toEqual(100);
@@ -42,4 +46,15 @@ test('Submarines can be hit', ()=> {
 })
 test('Destroyers can be hit', ()=> {
   expect(myInstance.hasHit([5,4])).toEqual(true);
+})
+
+test('Ships are all present', ()=> {
+  expect(myInstance.ships.length).toEqual(5);
+})
+
+test('Carriers can be accessed', ()=> {
+  expect(myInstance.board[myInstance.find([0,0])].ship).toEqual('ca');
+})
+test('Carriers can be sunk', ()=> {
+  expect(myInstance.ships[0].sunk).toEqual(true);
 })
