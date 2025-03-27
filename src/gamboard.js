@@ -59,7 +59,7 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
         for(let i = 0; i < 100 ;i++){
             let current = this.board[index].position;
                 if(current[0]==position[0]&&current[1]==position[1]){
-                    if(this.board[index].hit == false)
+                    if(this.board[index].hasHit == false)
                         this.board[index].hit();
                     if(this.board[index].containsShip)
                         this.hits++;
@@ -86,16 +86,18 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
         let horizontal = null;
         let vertical = null;
         let positive = null;
-        const ship = new Ship(type, start, end)
+        const ship = new Ship(type)
         this.ships.push(ship);
-        if(start[1]==end[1]){
+
+        if(start[1]==end[1]){  // Conditional for finding vertical/horizontal direction (x/y)
             horizontal = true;
         } else if(start[0]==end[0]){
             vertical = true;
         } else {
             throw new Error('Unable to find x/y direction error')
         }
-        if(horizontal === true){
+
+        if(horizontal === true){  //Conditional for finding direction from start node (+/-)
             if(start[0]>end[0]){
                 positive = false;
             } else {
@@ -110,40 +112,57 @@ class Gameboard {  // Gameboard class object, contains ships, nodes, and implici
         } else {
            throw new Error('Unable to find +/- direction error')
         }
-        const length = ship.find(length);
+
         if(horizontal){
             if(positive){
                 for(let i = 0; i < this.board.length; i++){
-                    if((i.position[0]>=start[0] && i.position[0]<=end[0])&&i.position[1]==start[1]){
-                        i.shipPlace();
-                        i.setShip(type);
+                    let nodePlace = this.board[i];
+                    if((nodePlace.position[0]>=start[0] && nodePlace.position[0]<=end[0])&&nodePlace.position[1]==start[1]){
+                        if(nodePlace.containsShip === true){
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                        };
+                        this.board[i].shipPlace();
+                        this.board[i].setShip(type);
                     }
                 }
             } else {
                 for(let i = 0; i < this.board.length; i++){
-                    if(i.position[0]<=start[0] && i.position[0]>=end[0]&&i.position[1]==start[1]){
-                        i.shipPlace();
-                        i.setShip(type);
+                    let nodePlace = this.board[i];
+                    if(nodePlace.position[0]<=start[0] && nodePlace.position[0]>=end[0]&&nodePlace.position[1]==start[1]){
+                        if(nodePlace.containsShip === true){
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                        };
+                        this.board[i].shipPlace();
+                        this.board[i].setShip(type);
                     }
                 }
             }
-        } else {
+        } else if(vertical){
             if(positive){
                 for(let i = 0; i < this.board.length; i++){
-                    if((i.position[1]>=start[1] && i.position[1]<=end[1])&&i.position[0]==start[0]){
-                        i.shipPlace();
-                        i.setShip(type);
+                    let nodePlace = this.board[i];
+                    if((nodePlace.position[1]>=start[1] && nodePlace.position[1]<=end[1])&&nodePlace.position[0]==start[0]){
+                        if(nodePlace.containsShip === true){
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                        };
+                        this.board[i].shipPlace();
+                        this.board[i].setShip(type);
                     }
                 }
             } else {
                 for(let i = 0; i < this.board.length; i++){
-                    if((i.position[1]<=start[1] && i.position[1]>=end[1])&&i.position[0]==start[0]){
-                        i.shipPlace();
-                        i.setShip(type);
+                    let nodePlace = this.board[i];
+                    if((nodePlace.position[1]<=start[1] && nodePlace.position[1]>=end[1])&&nodePlace.position[0]==start[0]){
+                        if(nodePlace.containsShip === true){
+                            throw new Error(`there is a ship at ${nodePlace.position} in the way`);
+                        };
+                        this.board[i].shipPlace();
+                        this.board[i].setShip(type);
                     }
                 }
             }
-        };       
+        } else 
+            throw new Error('Unable to loop')       
     };
 };
 export { Gameboard }
