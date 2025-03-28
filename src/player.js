@@ -1,8 +1,7 @@
 import { Gameboard } from "./gamboard";
 
 class Player {
-    constructor(type){
-        this.playerType =  type;
+    constructor(){
         this.Gameboard = new Gameboard();
     }
     genStart(){
@@ -56,7 +55,7 @@ class Player {
                 this.checkValidPlacement(currentPosition[0],currentPosition[1])
                 success = true
             } catch (error) {
-                console.error('error:',error)
+                console.log(`trying to place ${type} again`)
             }
         }
         this.Gameboard.placeShip(type, finalPosition[0], finalPosition[1])
