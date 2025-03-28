@@ -1,9 +1,58 @@
 body {
-    background-color: powderblue;
+    background-color: grey;
   }
-  h1 {
-    color: blue;
-  }
-  p {
-    color: red;
-  }
+header {
+  font-size: 60px;
+  align-self: center;
+}
+.content{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-areas: 
+  ". a ."
+  ". b ."
+  ". b .";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 50px 1fr 1fr;
+  gap: 20px;
+}
+#title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: a;
+}
+.container{
+  grid-area: b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+#boardPlayer,
+#boardComputer {
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+  grid-template-rows: repeat(10,10%);
+  background-color: powderblue;
+  height: 400px;
+  width: 400px;
+}
+.cell{
+  margin: 1px;
+  background-color: blue;
+}
+.cpuCell{
+  margin: 1px;
+  background-color: cadetblue;
+}
+.playerShip{
+  margin: 1px;
+  background-color: darkgrey;
+}
+.hit{
+  margin: 1px;
+  background-color: brown;
+}
